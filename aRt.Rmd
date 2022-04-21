@@ -1,0 +1,27 @@
+---
+title: "aRt"
+author: '%>%'
+output: html_document
+---
+
+```{r setup}
+pacman::p_load(tidyverse,
+               magrittr,
+               RColorBrewer,
+               wesanderson)
+```
+
+```{r blob1}
+expand.grid(x = c(1:500), y = c(1:200)) %>% 
+  as.data.frame() %>%
+  mutate(col = round(x/120)) %>%
+  ggplot(aes(x = 1- sin(x)*y^2, y = 1+cos(y) - x^(2 *runif(1, 1, 5)), col = as.factor(col))) + 
+  geom_point(alpha = .2, shape = 20, size = .7) + 
+  coord_polar() + 
+  theme_void() +
+  theme(legend.position = "none") +
+  scale_color_manual(values = wes_palette("Darjeeling1"))
+#remove coord_polar
+#change () in y or
+```
+
